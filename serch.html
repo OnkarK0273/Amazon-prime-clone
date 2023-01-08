@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="shortcut icon" href="https://www.logo.wine/a/logo/Amazon_Prime/Amazon_Prime-Logo.wine.svg"  type="image/x-icon">
+    <title>Serch</title>
+    
+    <style>
+        * {
+    margin: 0px;
+    padding: 0px; 
+    font-family: 'Montserrat';
+    color:white;
+    
+    }
+    body{
+        background-color: #0F171E
+    }
+    
+    #navbar{
+        
+        display: flex;
+        justify-content: space-between;
+        padding: 17px;
+        border: 0px solid white;
+        position: sticky;
+        top:0px;
+        align-items: center;
+        background-color: #0F171E
+    }
+   
+    #navbar>.nav{
+        display: flex;
+        justify-content: space-around;
+        column-gap:20px;
+        border: 0px solid white;
+        align-items: center;
+    }
+    #navbar>.nav p>a{
+        color: white;
+        font-size: larger;
+        text-decoration: none;  
+    }
+    #navbar>.navmid{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        column-gap:20px;
+        border: 0px solid white;
+        
+    }
+    #navbar>.navmid p{
+        color: white;
+    font-size: 15px;
+    
+    }
+    #navbar>.navmid h2{
+        color: white;
+    font-size: 20px;
+    
+    }
+    #navbar>.navmid p:hover{
+        color: red;
+    }
+    .nav p{
+        font-size: 5px;
+        color: aliceblue;
+    }
+    #slider{
+            width:100%;
+            margin:auto;
+            border: 1px solid black;
+            height:auto;
+            margin-bottom: 30px;
+        }
+
+    #movies{
+        
+        width: 80%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 20px;
+        row-gap:30px;
+
+    }
+    #more{
+        color: #0F171E;
+        padding: 5px;
+        border-radius:5px;
+    }
+    #quarry{
+        color: #0F171E;
+    }
+    .navmid>h2{
+            cursor: pointer;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navmid">
+            <h2 onclick="home()">Prime Hotstar</h2>
+            <p>Home</p>
+            <p>Store</p>
+            <p>Channal</p>
+        </div>
+        <div class="nav">
+            
+            <input type="text"  id="quarry" oninput="debounce(serch,1000)" placeholder="Serch">
+            <button onclick="more()" id="more"> More Details</button>
+           
+            <p><a href="log.html"><i id="cardclick" class="material-icons" style="font-size:36px">person</i></a></p>
+            
+        </div>
+    </div>
+ 
+    <div id="slider">
+ 
+    </div>
+    
+   
+
+    <div id="movies">
+        
+    
+       </div>
+
+
+
+</body>
+</html>
+<script src="serch.js"></script>

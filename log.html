@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link rel="shortcut icon" href="https://www.logo.wine/a/logo/Amazon_Prime/Amazon_Prime-Logo.wine.svg"  type="image/x-icon">
+    <title>Authotication</title>
+    <style>
+         * {
+    margin: 0px;
+    padding: 0px; 
+    font-family: 'Montserrat';
+    color:white;
+    
+    }
+    body{
+        background-color: #0F171E
+    }
+    
+    #navbar{
+        
+        display: flex;
+        justify-content: space-between;
+        padding: 17px;
+        border: 0px solid white;
+        position: sticky;
+        top:0px;
+        align-items: center;
+        background-color: #0F171E
+    }
+   
+    #navbar>.nav{
+        display: flex;
+        justify-content: space-around;
+        column-gap:20px;
+        border: 0px solid white;
+        align-items: center;
+    }
+    #navbar>.nav p>a{
+        color: white;
+        font-size: larger;
+        text-decoration: none;  
+    }
+    #navbar>.navmid{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        column-gap:20px;
+        border: 0px solid white;
+        
+    }
+    #navbar>.navmid p{
+        color: white;
+    font-size: 15px;
+    
+    }
+    #navbar>.navmid h2{
+        color: white;
+    font-size: 20px;
+    
+    }
+    #navbar>.navmid p:hover{
+        color: red;
+    }
+    .nav p{
+        font-size: 5px;
+        color: aliceblue;
+    }
+        .container{
+            width: 90%;
+            display: flex;
+            margin: auto;
+            margin-top: 5px;
+            column-gap: 10px;
+           
+            justify-content: space-between;
+            padding: 10px;
+        }
+        /* #signform,#logform{
+            display: flex;
+            flex-direction: column;
+            width:40%;
+            row-gap:10px;
+            border:0px solid black;
+            padding:20px;
+            background-color: rgb(139, 173, 237);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        } */
+        h1{
+
+            text-align: center;
+        }
+        #signform,#logform{
+        width:30%;
+        margin: auto;
+        display:flex ;
+        flex-direction: column;
+        row-gap:15px;
+        margin-top: 5px;
+        padding: 20px;
+        }
+        #signform>input,#logform>input{
+            padding: 15px;
+            background-color: #141414;
+            border: 1px solid #8F8F8F;
+            color:white;
+            border-radius: 5px;
+        }
+        button{
+            background-color: #566B84;
+            color: white;
+            padding:18px;
+            margin-top: 18px;
+            border: none;
+        }
+        .navmid>h2,#serch{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div class="navmid">
+            <h2 onclick="home()">Prime Hotstar</h2>
+            <p>Home</p>
+            <p>Store</p>
+            <p>Channal</p>
+        </div>
+        <div class="nav">
+ 
+            
+           <p><i class="material-icons" style="font-size:36px" id="serch" onclick="serch()">search</i></p>
+           
+            
+        </div>
+    </div>
+    
+    <div class="container">
+        <form action="" id="signform">
+            <h2>Sign-up</h2>
+            <input type="text" id="name" placeholder="name">
+            <input type="email" id="email" placeholder="email">
+            <input type="password" id="password" placeholder="password">
+            <input type="text" id="username" placeholder="username">
+            <input type="number" id="mobile" placeholder="mobile">
+            <input type="text" id="decription" placeholder="decription">
+            <button onclick="register()" >Registration</button>
+        </form>
+
+        <form id="logform">
+            <h2>Log-in</h2>
+            <input type="text" id="log-username" placeholder="username">
+
+            <input type="password" id="log-password" placeholder="password">
+
+            <button onclick="login()" >log in</button>
+        </form>
+       
+    </div>
+
+</body>
+</html>
+
+<script>
+const serch=()=>{
+    document.location.href = "serch.html"
+}
+
+const home=()=>{
+
+    document.location.href = "index.html"
+}
+ //1.collect signupdata
+ //2.cf to create object of above data
+ //3.post data to server by signup url and show msg registration sucessfull in console.log
+
+    const user=(n,e,p,u,m,d)=>{
+        this.name = n
+        this.email = e
+        this.password = p
+        this.username = u
+        this.mobile = m
+        this.description = d 
+    }
+
+     const register = async ()=>{
+        event.preventDefault()
+        const name = document.querySelector("#name").value
+        const email = document.querySelector("#email").value
+        const password = document.querySelector("#password").value
+        const username = document.querySelector("#username").value
+        const mobile = document.querySelector("#mobile").value
+        const decription = document.querySelector("#decription").value
+
+        let user_data = new user(name,email,password,username,mobile,decription)
+
+        // masai register server url 
+        let r_url = 'https://masai-api-mocker.herokuapp.com/auth/register'
+
+
+        let res = await fetch(r_url,{
+            // post methodes
+            method: 'POST',
+
+            body: JSON.stringify(user_data),
+            //type of data
+            headers: {
+                'Content-Type':'application/json'
+            },
+
+        });
+
+        let data = await res.json()
+        console.log("sign",data)
+
+
+
+
+    }
+
+//1.collect logindata
+ //2.create obj to store log in data
+ //3.post data to server by log in url if data is correct it give token
+
+     const login=async()=>{
+        event.preventDefault()
+       
+        let logindata = {
+            username:document.querySelector("#log-username").value,
+            password:document.querySelector("#log-password").value
+        }
+      
+        // masai login server url
+        let l_url = 'https://masai-api-mocker.herokuapp.com/auth/login'
+
+
+        let res = await fetch(l_url,{
+            // post methodes
+            method: 'POST',
+
+            body: JSON.stringify(logindata),
+
+            //heder is additional data about api
+
+            headers: {
+                'Content-Type':'application/json'
+            },
+
+        });
+
+        let data = await res.json()
+        let token = data.token
+        getprofile(logindata.username,token)
+        console.log("log in",data)
+
+    }
+    
+
+    // this function for show all crediential of user when he got token 
+
+    const getprofile= async (username,token)=>{
+
+        // masai getusername server url
+        let api = `https://masai-api-mocker.herokuapp.com/user/${username}`;
+
+        let res = await fetch(api,{
+        
+        headers: {
+            'Content-Type':'application/json',
+
+            // authtication header
+            Authorization: `Bearer ${token}` 
+
+        }, 
+        })
+
+        let data = await res.json();
+        alert ("Login Sucessful")
+        console.log("username",data)
+
+
+    }
+
+
+</script>
